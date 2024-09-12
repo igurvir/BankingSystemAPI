@@ -27,25 +27,25 @@ public class TransactionService {
 
     // Make a transaction (deposit or withdraw)
     public Transaction makeTransaction(Long accountId, Transaction transaction) {
-        Optional<Account> account = accountRepository.findById(accountId);
-        if (account.isPresent()) {
-            Account accountEntity = account.get();
+        Optional<Account> accountOpt = accountRepository.findById(accountId);
+        if (accountOpt.isPresent()) {
+            Account account = accountOpt.get();
             transaction.setTransactionDate(LocalDateTime.now());
-            transaction.setAccount(accountEntity);
+            transaction.setAccount(account);
 
             // Update account balance based on transaction type
             if ("deposit".equalsIgnoreCase(transaction.getTransactionType())) {
-                accountEntity.setBalance(accountEntity.getBalance() + transaction.getAmount());
+                account.setBalance(account.getBalance() + transaction.getAmount());
             } else if ("withdraw".equalsIgnoreCase(transaction.getTransactionType())) {
-                if (accountEntity.getBalance() >= transaction.getAmount()) {
-                    accountEntity.setBalance(accountEntity.getBalance() - transaction.getAmount());
+                if (account.getBalance() >= transaction.getAmount()) {
+                    account.setBalance(account.getBalance() - transaction.getAmount());
                 } else {
                     throw new RuntimeException("Insufficient balance for withdrawal");
                 }
             }
 
             // Save the updated account balance
-            accountRepository.save(accountEntity);
+            accountRepository.save(account);
 
             // Save and return the transaction
             return transactionRepository.save(transaction);

@@ -1,6 +1,7 @@
 package com.bankingsystem.bankingsystem2.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,17 +11,19 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "account_type_id")
-    private AccountType accountType;  // Linked to AccountType entity
-
     private double balance;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference  // Prevent recursion by marking the user side as back reference
+    @JsonBackReference  // Prevent recursion, user will manage the reference
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "account_type_id")
+    @JsonIgnoreProperties({"accounts"})  // Ignore accounts in AccountType to prevent recursion
+    private AccountType accountType;
+
+    // Constructor
     public Account() {}
 
     // Getters and Setters
@@ -30,14 +33,6 @@ public class Account {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public AccountType getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(AccountType accountType) {
-        this.accountType = accountType;
     }
 
     public double getBalance() {
@@ -54,5 +49,13 @@ public class Account {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
     }
 }

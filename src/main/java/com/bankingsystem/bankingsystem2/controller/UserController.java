@@ -32,12 +32,27 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        // Check if required fields are present
+        if (user.getName() == null || user.getName().isEmpty()) {
+            return ResponseEntity.status(400).body("Name is required.");
+        }
+        if (user.getEmail() == null || user.getEmail().isEmpty()) {
+            return ResponseEntity.status(400).body("Email is required.");
+        }
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+            return ResponseEntity.status(400).body("Password is required.");
+        }
+
+        // Check if the email already exists
         Optional<User> existingUser = userService.findByEmail(user.getEmail());
         if (existingUser.isPresent()) {
-            return ResponseEntity.status(400).body(null);  // Return error if user exists
+            return ResponseEntity.status(400).body("User with this email already exists.");
         }
-        return ResponseEntity.ok(userService.createUser(user));
+
+        // Create the user if validations pass
+        User createdUser = userService.createUser(user);
+        return ResponseEntity.ok(createdUser);
     }
 
     @DeleteMapping("/{id}")

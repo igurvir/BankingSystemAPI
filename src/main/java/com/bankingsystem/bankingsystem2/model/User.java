@@ -1,6 +1,8 @@
 package com.bankingsystem.bankingsystem2.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
@@ -20,6 +22,7 @@ public class User {
 
     // One user can have multiple accounts
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference  // Manage the reference to avoid recursion
     private List<Account> accounts;
 
     public User() {

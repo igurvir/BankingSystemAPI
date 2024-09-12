@@ -37,7 +37,8 @@ public class TransactionController {
                 return ResponseEntity.badRequest().body(null); // Account not found or transaction failed
             }
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(null); // Insufficient balance or other runtime errors
+            // Return the error message in the response body
+            return ResponseEntity.badRequest().body(null);
         }
     }
 }

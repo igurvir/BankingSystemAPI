@@ -32,18 +32,26 @@ public class AccountService {
         return accountRepository.findById(id);
     }
 
-   public Account createAccount(Long userId, Long accountTypeId, Account account) {
-    Optional<User> user = userRepository.findById(userId);
-    Optional<AccountType> accountType = accountTypeRepository.findById(accountTypeId);
+    public Account createAccount(Long userId, Long accountTypeId, Account account) {
+        // Fetch user by ID
+        Optional<User> user = userRepository.findById(userId);
+        if (!user.isPresent()) {
+            throw new RuntimeException("User not found");
+        }
 
-    if (user.isPresent() && accountType.isPresent()) {
+        // Fetch account type by ID
+        Optional<AccountType> accountType = accountTypeRepository.findById(accountTypeId);
+        if (!accountType.isPresent()) {
+            throw new RuntimeException("Account type not found");
+        }
+
+        // Set the user and account type
         account.setUser(user.get());
-        account.setAccountType(accountType.get()); // Make sure this line is setting the account type correctly
+        account.setAccountType(accountType.get());
+
+        // Save and return the account
         return accountRepository.save(account);
     }
-    return null;
-}
-
 
     public void deleteAccount(Long id) {
         accountRepository.deleteById(id);

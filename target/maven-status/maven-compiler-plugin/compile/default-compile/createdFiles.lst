@@ -1,5 +1,6 @@
 com/bankingsystem/bankingsystem2/repository/AccountRepository.class
 com/bankingsystem/bankingsystem2/service/AccountService.class
+com/bankingsystem/bankingsystem2/exception/GlobalExceptionHandler$ErrorResponse.class
 com/bankingsystem/bankingsystem2/BankingSystemApplication.class
 com/bankingsystem/bankingsystem2/repository/UserRepository.class
 com/bankingsystem/bankingsystem2/controller/AccountController.class
@@ -15,4 +16,5 @@ com/bankingsystem/bankingsystem2/model/AccountType.class
 com/bankingsystem/bankingsystem2/model/Account.class
 com/bankingsystem/bankingsystem2/model/User.class
 com/bankingsystem/bankingsystem2/repository/AccountTypeRepository.class
+com/bankingsystem/bankingsystem2/exception/GlobalExceptionHandler.class
 com/bankingsystem/bankingsystem2/controller/TransactionController.class

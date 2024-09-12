@@ -33,15 +33,21 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody User user) {
-        // Check if required fields are present
+        // Validate required fields
         if (user.getName() == null || user.getName().isEmpty()) {
             return ResponseEntity.status(400).body("Name is required.");
         }
         if (user.getEmail() == null || user.getEmail().isEmpty()) {
             return ResponseEntity.status(400).body("Email is required.");
         }
-        if (user.getPassword() == null || user.getPassword().isEmpty()) {
-            return ResponseEntity.status(400).body("Password is required.");
+        if (!user.getEmail().matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            return ResponseEntity.status(400).body("Invalid email format.");
+        }
+        if (user.getPassword() == null || user.getPassword().length() < 6) {
+            return ResponseEntity.status(400).body("Password must be at least 6 characters long.");
+        }
+        if (!user.getPassword().matches(".*[A-Za-z0-9].*")) {
+            return ResponseEntity.status(400).body("Password must contain letters and numbers.");
         }
 
         // Check if the email already exists

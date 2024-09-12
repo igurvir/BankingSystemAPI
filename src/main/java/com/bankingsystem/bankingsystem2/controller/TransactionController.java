@@ -28,17 +28,25 @@ public class TransactionController {
 
     // Make a transaction (deposit/withdrawal)
     @PostMapping("/{accountId}")
-    public ResponseEntity<Transaction> makeTransaction(@PathVariable Long accountId, @RequestBody Transaction transaction) {
+    public ResponseEntity<?> makeTransaction(@PathVariable Long accountId, @RequestBody Transaction transaction) {
+        // Validate transaction type
+        if (transaction.getTransactionType() == null || (!"deposit".equalsIgnoreCase(transaction.getTransactionType())
+                && !"withdraw".equalsIgnoreCase(transaction.getTransactionType()))) {
+            return ResponseEntity.status(400).body("Invalid transaction type. Use 'deposit' or 'withdraw'.");
+        }
+
+        // Validate amount
+        if (transaction.getAmount() <= 0) {
+            return ResponseEntity.status(400).body("Transaction amount must be greater than zero.");
+        }
+
         try {
             Transaction savedTransaction = transactionService.makeTransaction(accountId, transaction);
-            if (savedTransaction != null) {
-                return ResponseEntity.ok(savedTransaction);
-            } else {
-                return ResponseEntity.badRequest().body(null); // Account not found or transaction failed
-            }
+            return ResponseEntity.ok(savedTransaction);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         } catch (RuntimeException e) {
-            // Return the error message in the response body
-            return ResponseEntity.badRequest().body(null);
+            return ResponseEntity.status(500).body(e.getMessage());
         }
     }
 }

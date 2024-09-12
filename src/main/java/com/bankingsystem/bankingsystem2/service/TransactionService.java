@@ -30,6 +30,12 @@ public class TransactionService {
         Optional<Account> accountOpt = accountRepository.findById(accountId);
         if (accountOpt.isPresent()) {
             Account account = accountOpt.get();
+            
+            // Ensure accountType is loaded
+            if (account.getAccountType() == null) {
+                throw new RuntimeException("Account type is not set for this account.");
+            }
+            
             transaction.setTransactionDate(LocalDateTime.now());
             transaction.setAccount(account);
 

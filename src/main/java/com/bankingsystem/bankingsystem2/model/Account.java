@@ -1,6 +1,6 @@
 package com.bankingsystem.bankingsystem2.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,17 +10,18 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String accountType;
+    @ManyToOne
+    @JoinColumn(name = "account_type_id")
+    private AccountType accountType;  // Linked to AccountType entity
 
     private double balance;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnore  // This prevents circular reference during serialization
+    @JsonBackReference  // Prevent recursion by marking the user side as back reference
     private User user;
 
-    public Account() {
-    }
+    public Account() {}
 
     // Getters and Setters
     public Long getId() {
@@ -31,11 +32,11 @@ public class Account {
         this.id = id;
     }
 
-    public String getAccountType() {
+    public AccountType getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
 

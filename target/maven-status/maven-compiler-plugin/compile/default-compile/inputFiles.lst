@@ -2,9 +2,11 @@
 /Users/gurvir/Desktop/Banking-System/BankingSystem/src/main/java/com/bankingsystem/bankingsystem2/controller/TransactionController.java
 /Users/gurvir/Desktop/Banking-System/BankingSystem/src/main/java/com/bankingsystem/bankingsystem2/repository/AccountRepository.java
 /Users/gurvir/Desktop/Banking-System/BankingSystem/src/main/java/com/bankingsystem/bankingsystem2/controller/HomeController.java
+/Users/gurvir/Desktop/Banking-System/BankingSystem/src/main/java/com/bankingsystem/bankingsystem2/repository/AccountTypeRepository.java
 /Users/gurvir/Desktop/Banking-System/BankingSystem/src/main/java/com/bankingsystem/bankingsystem2/service/TransactionService.java
 /Users/gurvir/Desktop/Banking-System/BankingSystem/src/main/java/com/bankingsystem/bankingsystem2/controller/UserController.java
 /Users/gurvir/Desktop/Banking-System/BankingSystem/src/main/java/com/bankingsystem/bankingsystem2/model/Account.java
+/Users/gurvir/Desktop/Banking-System/BankingSystem/src/main/java/com/bankingsystem/bankingsystem2/model/AccountType.java
 /Users/gurvir/Desktop/Banking-System/BankingSystem/src/main/java/com/bankingsystem/bankingsystem2/repository/TransactionRepository.java
 /Users/gurvir/Desktop/Banking-System/BankingSystem/src/main/java/com/bankingsystem/bankingsystem2/controller/AccountController.java
 /Users/gurvir/Desktop/Banking-System/BankingSystem/src/main/java/com/bankingsystem/bankingsystem2/service/UserService.java

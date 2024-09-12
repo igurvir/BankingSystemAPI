@@ -3,12 +3,16 @@ com/bankingsystem/bankingsystem2/service/AccountService.class
 com/bankingsystem/bankingsystem2/BankingSystemApplication.class
 com/bankingsystem/bankingsystem2/repository/UserRepository.class
 com/bankingsystem/bankingsystem2/controller/AccountController.class
+com/bankingsystem/bankingsystem2/controller/AccountTypeController.class
 com/bankingsystem/bankingsystem2/controller/UserController.class
 com/bankingsystem/bankingsystem2/service/UserService.class
+com/bankingsystem/bankingsystem2/service/AccountTypeService.class
 com/bankingsystem/bankingsystem2/controller/HomeController.class
 com/bankingsystem/bankingsystem2/service/TransactionService.class
 com/bankingsystem/bankingsystem2/model/Transaction.class
 com/bankingsystem/bankingsystem2/repository/TransactionRepository.class
+com/bankingsystem/bankingsystem2/model/AccountType.class
 com/bankingsystem/bankingsystem2/model/Account.class
 com/bankingsystem/bankingsystem2/model/User.class
+com/bankingsystem/bankingsystem2/repository/AccountTypeRepository.class
 com/bankingsystem/bankingsystem2/controller/TransactionController.class

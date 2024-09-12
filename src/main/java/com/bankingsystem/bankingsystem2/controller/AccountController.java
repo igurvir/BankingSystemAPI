@@ -31,14 +31,9 @@ public class AccountController {
         }
     }
 
-    @PostMapping("/{userId}")
-    public ResponseEntity<Account> createAccount(@PathVariable Long userId, @RequestBody Account account) {
-        Optional<Account> createdAccount = accountService.createAccount(userId, account);
-        if (createdAccount.isPresent()) {
-            return ResponseEntity.ok(createdAccount.get());
-        } else {
-            return ResponseEntity.badRequest().build(); // User not found or other error
-        }
+    @PostMapping("/{userId}/{accountTypeId}")
+    public Account createAccount(@PathVariable Long userId, @PathVariable Long accountTypeId, @RequestBody Account account) {
+        return accountService.createAccount(userId, accountTypeId, account);
     }
 
     @DeleteMapping("/{id}")

@@ -73,7 +73,7 @@ Copy code
 }
 ``` 
 ### Get All Users
-### GET /api/users
+***GET***  `/api/users`
 ```
 Response:
 Status: 200 OK
@@ -93,7 +93,7 @@ Copy code
 ```
  
 ### Get a Specific User
-### GET /api/users/{id}
+***GET***  `/api/users/{id}`
 ```
 Response:
 Status: 200 OK
@@ -112,7 +112,7 @@ Copy code
 ### Account Management
 
 ### Create a New Account for a User
-POST /api/accounts/{userId}/{accountTypeId}
+***POST***  `/api/accounts/{userId}/{accountTypeId}`
 ```
 Request Body:
 
@@ -139,7 +139,7 @@ Copy code
 }
 ```
 ### Get All Accounts
-### GET /api/accounts
+ ***GET***  `/api/accounts`
 ```
 Response:
 Status: 200 OK
@@ -161,7 +161,7 @@ Copy code
 ]
 ```
 ### Get a Specific Account
-### GET /api/accounts/{id}
+***GET*** `/api/accounts/{id}`
 ```
 Response:
 Status: 200 OK
@@ -183,7 +183,7 @@ Copy code
 ### Transaction Management
 
 ### Make a Deposit/Withdrawal
-### POST /api/transactions/{accountId}
+***POST***  `/api/transactions/{accountId}`
 ```
 Request Body:
 
@@ -217,7 +217,7 @@ Copy code
 }
 ```
 ### Get Transaction History
-### GET /api/transactions/{accountId}
+***GET*** `/api/transactions/{accountId}`
 ```
 Response:
 Status: 200 OK

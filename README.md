@@ -258,6 +258,7 @@ mvn test
 ```bash
 git clone https://github.com/your-repo/BankingSystem.git
 cd BankingSystem
+```
 
 ## Connect with Me on LinkedIn
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/gurvir-singh-3a98a6255/)

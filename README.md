@@ -37,6 +37,222 @@ This is a backend application that handles basic banking operations such as acco
 
 ## Setup
 
+
+
+
+
+
+# API Endpoints
+
+## User Management
+
+### Create a New User
+
+**POST** `/api/users`
+
+**Request Body:**
+
+```json
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "password": "password123"
+}
+Response:
+Status: 200 OK
+
+Example:
+
+json
+Copy code
+{
+  "id": 1,
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "accounts": null
+}
+``` 
+### Get All Users
+### GET /api/users
+```
+Response:
+Status: 200 OK
+
+Example:
+
+json
+Copy code
+[
+  {
+    "id": 1,
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "accounts": []
+  }
+]
+```
+ 
+### Get a Specific User
+### GET /api/users/{id}
+```
+Response:
+Status: 200 OK
+
+Example:
+
+json
+Copy code
+{
+  "id": 1,
+  "name": "Jane Doe",
+  "email": "jane@example.com",
+  "accounts": []
+}
+```
+### Account Management
+
+### Create a New Account for a User
+POST /api/accounts/{userId}/{accountTypeId}
+```
+Request Body:
+
+json
+Copy code
+{
+  "balance": 1000.0
+}
+Response:
+Status: 200 OK
+
+Example:
+
+json
+Copy code
+{
+  "id": 1,
+  "balance": 1000.0,
+  "accountType": {
+    "id": 1,
+    "typeName": "Savings",
+    "interestRate": 0.02
+  }
+}
+```
+### Get All Accounts
+### GET /api/accounts
+```
+Response:
+Status: 200 OK
+
+Example:
+
+json
+Copy code
+[
+  {
+    "id": 1,
+    "balance": 1000.0,
+    "accountType": {
+      "id": 1,
+      "typeName": "Savings",
+      "interestRate": 0.02
+    }
+  }
+]
+```
+### Get a Specific Account
+### GET /api/accounts/{id}
+```
+Response:
+Status: 200 OK
+
+Example:
+
+json
+Copy code
+{
+  "id": 1,
+  "balance": 1000.0,
+  "accountType": {
+    "id": 1,
+    "typeName": "Savings",
+    "interestRate": 0.02
+  }
+}
+```
+### Transaction Management
+
+### Make a Deposit/Withdrawal
+### POST /api/transactions/{accountId}
+```
+Request Body:
+
+json
+Copy code
+{
+  "transactionType": "deposit",
+  "amount": 500.0
+}
+Response:
+Status: 200 OK
+
+Example:
+
+json
+Copy code
+{
+  "id": 1,
+  "transactionType": "deposit",
+  "amount": 500.0,
+  "transactionDate": "2024-09-12T17:52:48.346483",
+  "account": {
+    "id": 1,
+    "balance": 1500.0,
+    "accountType": {
+      "id": 1,
+      "typeName": "Savings",
+      "interestRate": 0.02
+    }
+  }
+}
+```
+### Get Transaction History
+### GET /api/transactions/{accountId}
+```
+Response:
+Status: 200 OK
+
+Example:
+
+json
+Copy code
+[
+  {
+    "id": 1,
+    "transactionType": "deposit",
+    "amount": 500.0,
+    "transactionDate": "2024-09-12T17:52:48.346483",
+    "account": {
+      "id": 1,
+      "balance": 1500.0,
+      "accountType": {
+        "id": 1,
+        "typeName": "Savings",
+        "interestRate": 0.02
+      }
+    }
+  }
+]
+```
+### Running Tests
+
+To run the tests, use:
+
+bash
+Copy code
+mvn test
+
+
 ### Clone the repository
 
 ```bash
